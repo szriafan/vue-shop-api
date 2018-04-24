@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // Database connection
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://riafan:hello123@ds043012.mlab.com:43012/tutorial').then(
+mongoose.connect(process.env.DB_BASE + '/tutorial').then(
   () => { console.log('mongodb connect successfully') },
   err => { console.log(err)}
 );

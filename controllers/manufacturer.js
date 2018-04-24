@@ -1,5 +1,5 @@
 const Model = require('../model');
-const {Manufacturer} = Model;
+const {Product, Manufacturer} = Model;
 
 const manufacturerController = {
   all(req, res) {
@@ -35,7 +35,12 @@ const manufacturerController = {
   },
   remove(req, res) {
     const idParam = req.params.id;
-    Manufacturer.findOne({_id: idParam}).remove((err, removed) => res.json(idParam))
+    Manufacturer
+      .findOne({_id: idParam})
+      .remove((err, removed) => Product // remove products too
+        .find({'manufacturer': idParam})
+        .remove(() => res.json(idParam)));
+
   }
 };
 
