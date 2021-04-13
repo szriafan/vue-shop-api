@@ -1,26 +1,27 @@
 // Imports
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan')
-var bodyParser = require('body-parser');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan')
 
 // Database connection
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_TUTORIAL).then(
-  () => { console.log('mongodb connect successfully') },
-  err => { console.log(err)}
+mongoose.connect(process.env.MONGODB_TUTORIAL || 'mongodb://localhost:27017/tutorial', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => { console.log('mongodb connect successfully') },
+  err => { console.log(err) }
 );
 
 // Setup an express app
-var app = express();
+const app = express();
 
 // router
-var index = require('./routes/index');
+const index = require('./routes/index');
 const api = require('./routes/api/index');
 
 // CORS config
-app.all('/*', function(req, res, next) {
+app.all('/*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*'); // restrict it to the required domain
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
@@ -37,9 +38,8 @@ app.set('view engine', 'ejs');
 
 // Configure middlewares
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use('/', index);
 app.use('/v1', api);
 
