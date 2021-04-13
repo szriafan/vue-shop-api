@@ -2,7 +2,9 @@
 
 > API project(Express + Mongoose) for Vue Shop
 
-## Live demo: [https://riafan-api.herokuapp.com](https://vue-shop-api.herokuapp.com)</a>
+## Live demo: 
+
+[Demo](https://riafan-api.herokuapp.com)
 
 ## Build Setup
 ``` bash
