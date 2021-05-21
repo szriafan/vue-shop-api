@@ -1,4 +1,4 @@
-# Vue Shop API
+#Shop API
 
 > API project(Express + Mongoose) for Vue Shop
 
