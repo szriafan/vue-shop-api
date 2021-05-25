@@ -1,6 +1,9 @@
 #Shop API
 
-> API project(Express + Mongoose) for Vue Shop
+> API project(Express + Mongoose) for: 
+* [Vue shop](https://github.com/51fe/vue-shop)
+* [Reace shop](https://github.com/51fe/react-shop)
+* [RN shop](https://github.com/51fe/rn-shop)
 
 ## Live demo: 
 
