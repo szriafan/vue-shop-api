@@ -3,7 +3,7 @@ const {Product, Manufacturer} = Model;
 
 const manufacturerController = {
   all(req, res) {
-    Manufacturer.find({})
+    Manufacturer.find().sort({ '_id': -1 })
       .exec((err, manufacturers) => res.json(manufacturers)
       )
   },

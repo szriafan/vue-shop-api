@@ -4,7 +4,7 @@ const {Product} = Model;
 const productController = {
   all(req, res) {
     // Returns all products
-    Product.find({})
+    Product.find().sort({ '_id': -1 })
     // alongside it's manufacturer
     // information
       .populate('manufacturer')
@@ -39,16 +39,12 @@ const productController = {
     const idParam = req.params.id;
     let product = req.body;
     // Finds a product to be updated
-    Product.findOne({_id: idParam}, (err, data) => {
-      // Updates the product payload
-      data.name = product.name;
-      data.description = product.description;
-      data.image = product.image;
-      data.price = product.price;
-      data.inventory = product.inventory;
-      data.manufacturer = product.manufacturer;
-      // Saves the product
-      data.save((err, updated) => res.json(updated));
+    Product.findOneAndUpdate({_id: idParam}, product, (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.json(result)
     })
   },
   remove(req, res) {

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema,
-  model = mongoose.model.bind(mongoose),
   ObjectId = mongoose.Schema.Types.ObjectId;
 
 const productSchema = Schema({
@@ -20,7 +19,7 @@ const manufacturerSchema = Schema({
   name: {type: String, required: true}
 });
 
-const Product = model('Product', productSchema);
-const Manufacturer = model('Manufacturer', manufacturerSchema);
+const Product = mongoose.model('Product', productSchema);
+const Manufacturer = mongoose.model('Manufacturer', manufacturerSchema);
 
 module.exports = {Product, Manufacturer};
